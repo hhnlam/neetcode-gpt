@@ -24,6 +24,6 @@ class Solution:
         y_pred = np.clip(y_pred, 1e-7, 1 - 1e-7)
         n = y_true.shape[0]
 
-        a = y_true * np.log(y_pred)
-        L = -np.sum(a) / n
+        a = np.sum(y_true * np.log(y_pred), axis=1)
+        L = -np.mean(a)
         return round(L, 4)
